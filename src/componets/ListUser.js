@@ -1,10 +1,27 @@
-import React from "react";
+import React, { useState } from "react";
 
 function ListUser() {
+  const [inputs, setInput] = useState({});
+
+  const handleChange = (event) => {
+    const name = event.target.name;
+    const value = event.target.value;
+    setInput((values) => ({
+      ...values,
+      [name]: value,
+    }));
+  };
+
+  const handleSubmit = (event) => {
+    event.preventDefault();
+
+    console.log(inputs);
+  };
+
   return (
     <div>
       <h1>List User</h1>
-      <form action="">
+      <form onSubmit={handleSubmit}>
         <table cellSpacing="10">
           <tbody>
             <tr>
@@ -12,7 +29,7 @@ function ListUser() {
                 <label htmlFor="">Name</label>
               </th>
               <td>
-                <input type="text" name="name" />
+                <input type="text" name="name" onChange={handleChange} />
               </td>
             </tr>
             <tr>
@@ -20,7 +37,7 @@ function ListUser() {
                 <label htmlFor="">Email</label>
               </th>
               <td>
-                <input type="text" name="email" />
+                <input type="text" name="email" onChange={handleChange} />
               </td>
             </tr>
             <tr>
@@ -28,7 +45,7 @@ function ListUser() {
                 <label htmlFor="">Mobile</label>
               </th>
               <td>
-                <input type="text" name="mobile" />
+                <input type="text" name="mobile" onChange={handleChange} />
               </td>
             </tr>
             <tr>
